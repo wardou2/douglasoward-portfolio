@@ -1,6 +1,6 @@
-import React from 'react';
-import { Grid, Icon, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Grid, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const SectionHeading = (props) => {
     return (
@@ -22,26 +22,7 @@ const SectionHeading = (props) => {
                     </span>
                 </Grid.Column>
 
-                <Grid.Column width={4} verticalAlign="middle">
-                    <Button.Group floated="right">
-                        {props.sectionEdit && props.loggedIn ? (
-                            <Button
-                                onClick={props.startEdit}
-                                color="linkedin"
-                                icon="edit"
-                                size="large"
-                            />
-                        ) : null}
-                        {props.sectionNew && props.loggedIn ? (
-                            <Button
-                                onClick={props.startNew}
-                                color="green"
-                                icon="add circle"
-                                size="large"
-                            />
-                        ) : null}
-                    </Button.Group>
-                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle"></Grid.Column>
             </Grid.Row>
             <Grid.Row />
             <Grid.Row />
