@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
 
 import Content from "./components/Content";
@@ -182,74 +182,54 @@ const GITHUBS = [
     },
 ];
 
-const DEFAULT_STATE = {
-    user: USER,
-    jobs: JOBS,
-    skills: SKILLS,
-    githubs: GITHUBS,
-    sidebarVisible: false,
-    isMobile: false,
-};
+const App = () => {
+    const [sidebarVisible, setSidebarVisible] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [isMobile, _setIsMobile] = useState(
+        window.matchMedia("only screen and (max-width: 760px)").matches
+    );
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = DEFAULT_STATE;
-    }
-
-    componentDidMount() {
-        this.setState({
-            isMobile: window.matchMedia("only screen and (max-width: 760px)")
-                .matches,
-        });
-    }
-
-    toggleSidebar = () => {
-        this.setState({
-            sidebarVisible: !this.state.sidebarVisible,
-        });
+    const toggleSidebar = () => {
+        setSidebarVisible(!sidebarVisible);
     };
 
-    render() {
-        return (
-            <Sidebar.Pushable as={Segment} className="fix-sidebar">
-                <Sticky>
-                    <Sidebar
-                        animation="overlay"
-                        as={Menu}
-                        direction="right"
-                        icon="labeled"
-                        inverted
-                        vertical
-                        visible={this.state.sidebarVisible}
-                        width="wide"
-                    >
-                        <Menu.Item as="a" onClick={this.toggleSidebar}>
-                            <Icon name="bars" size="mini" />
-                            Close
-                        </Menu.Item>
-
-                        <NavLinks
-                            isMobile={this.state.isMobile}
-                            toggleSidebar={this.toggleSidebar}
-                        />
-                    </Sidebar>
-                </Sticky>
-                <Sidebar.Pusher dimmed={false}>
-                    <Segment basic className={this.state.user.color_theme}>
-                        <Content
-                            toggleSidebar={this.toggleSidebar}
-                            jobs={this.state.jobs}
-                            githubs={this.state.githubs}
-                            skills={this.state.skills}
-                            user={this.state.user}
-                            isMobile={this.state.isMobile}
-                        />
-                    </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
-        );
-    }
-}
+    return (
+        <Sidebar.Pushable as={Segment} className="fix-sidebar">
+            <Sticky>
+                <Sidebar
+                    animation="overlay"
+                    as={Menu}
+                    direction="right"
+                    icon="labeled"
+                    inverted
+                    vertical
+                    visible={sidebarVisible}
+                    width="wide"
+                >
+                    <Menu.Item as="a" onClick={toggleSidebar}>
+                        <Icon name="bars" size="mini" />
+                        Close
+                    </Menu.Item>
+                    <NavLinks
+                        isMobile={isMobile}
+                        toggleSidebar={toggleSidebar}
+                    />
+                </Sidebar>
+            </Sticky>
+            <Sidebar.Pusher dimmed={false}>
+                <Segment basic className={USER.color_theme}>
+                    <Content
+                        toggleSidebar={toggleSidebar}
+                        jobs={JOBS}
+                        githubs={GITHUBS}
+                        skills={SKILLS}
+                        user={USER}
+                        isMobile={isMobile}
+                    />
+                </Segment>
+            </Sidebar.Pusher>
+        </Sidebar.Pushable>
+    );
+};
 
 export default App;
