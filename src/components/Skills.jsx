@@ -1,8 +1,8 @@
-import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import React from "react";
+import { Grid } from "semantic-ui-react";
 
-import Skill from './Skill';
-import SectionHeading from './SectionHeading';
+import Skill from "./Skill";
+import SectionHeading from "./SectionHeading";
 
 class Skills extends React.Component {
     constructor() {
@@ -25,19 +25,13 @@ class Skills extends React.Component {
             <div>
                 <SectionHeading
                     text="Primary Skillsets"
-                    editing={this.props.editing}
-                    loggedIn={this.props.loggedIn}
-                    sectionEdit={false}
-                    sectionNew={true}
-                    startEdit={(_) => this.props.startEdit(skills, 'skills')}
-                    startNew={(_) => this.props.startNew('skills')}
                     user={this.props.user}
                 />
 
                 <Grid columns={16} stackable centered>
                     <Grid.Column />
                     <Grid
-                        columns={'equal'}
+                        columns={"equal"}
                         textAlign="center"
                         stackable
                         centered
@@ -48,8 +42,6 @@ class Skills extends React.Component {
                                     skill={skill}
                                     index={index}
                                     key={skill.name + index}
-                                    loggedIn={this.props.loggedIn}
-                                    startEdit={this.props.startEdit}
                                 />
                             );
                         })}

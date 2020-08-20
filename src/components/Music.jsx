@@ -31,14 +31,7 @@ const Music = (props) => {
 
     return (
         <div>
-            <SectionHeading
-                text="Music"
-                startEdit={(_) => props.startEdit(props.user, "users")}
-                editing={props.editing}
-                loggedIn={props.loggedIn}
-                sectionEdit={true}
-                user={props.user}
-            />
+            <SectionHeading text="Music" user={props.user} />
             <Grid>
                 <Grid.Row centered>{getEmbeds()}</Grid.Row>
             </Grid>
