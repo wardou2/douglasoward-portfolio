@@ -3,9 +3,9 @@ import { Card, List, Image } from "semantic-ui-react";
 
 import sanitizeArray from "../util/String";
 
-const Job = (props) => {
-    const skillsUsed = sanitizeArray(props.job.skills_used);
-    const responsibilities = sanitizeArray(props.job.responsibilities);
+const Job = ({ job }) => {
+    const skillsUsed = sanitizeArray(job.skills_used);
+    const responsibilities = sanitizeArray(job.responsibilities);
 
     return (
         <Card raised className="corner-sharp text font-size-medium">
@@ -14,22 +14,21 @@ const Job = (props) => {
                     spaced
                     floated="left"
                     size="tiny"
-                    src={props.job.img_url}
-                    alt={props.job.company}
+                    src={job.img_url}
+                    alt={job.company}
                 />
-                <Card.Header> {props.job.title} </Card.Header>
-                <Card.Meta> {props.job.company} </Card.Meta>
+                <Card.Header> {job.title} </Card.Header>
+                <Card.Meta> {job.company} </Card.Meta>
                 <Card.Meta>
                     {" "}
-                    {props.job.start_month} {props.job.start_year} -{" "}
-                    {props.job.end_month}{" "}
-                    {props.job.end_year ? props.job.end_year : "Present"}
+                    {job.start_month} {job.start_year} - {job.end_month}{" "}
+                    {job.end_year ? job.end_year : "Present"}
                 </Card.Meta>
             </Card.Content>
-            {props.job.summary && (
+            {job.summary && (
                 <Card.Content>
                     <Card.Meta> SUMMARY </Card.Meta>
-                    <Card.Description>{props.job.summary} </Card.Description>
+                    <Card.Description>{job.summary} </Card.Description>
                 </Card.Content>
             )}
 

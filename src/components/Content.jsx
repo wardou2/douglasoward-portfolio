@@ -9,50 +9,47 @@ import Githubs from "./Githubs";
 import Skills from "./Skills";
 import Music from "./Music";
 
-const Content = (props) => {
+const Content = ({ toggleSidebar, jobs, githubs, skills, user, isMobile }) => {
     return (
         <Grid columns="equal">
             <Grid.Row key="nav" id="nav">
                 <Grid.Column>
-                    <Nav
-                        toggleSidebar={props.toggleSidebar}
-                        isMobile={props.isMobile}
-                    />
+                    <Nav toggleSidebar={toggleSidebar} isMobile={isMobile} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="name" id="name">
                 <Grid.Column>
-                    <NamePicIntro user={props.user} />
+                    <NamePicIntro user={user} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="about" id="about">
                 <Grid.Column>
-                    <AboutMe user={props.user} />
+                    <AboutMe user={user} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="skills" id="skills">
                 <Grid.Column>
-                    <Skills skills={props.skills} user={props.user} />
+                    <Skills skills={skills} user={user} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="jobs" id="jobs">
                 <Grid.Column>
-                    <Jobs jobs={props.jobs} user={props.user} />
+                    <Jobs jobs={jobs} user={user} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="github" id="github">
                 <Grid.Column>
-                    <Githubs githubs={props.githubs} user={props.user} />
+                    <Githubs githubs={githubs} user={user} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="music" id="music">
                 <Grid.Column>
-                    <Music user={props.user} isMobile={props.isMobile} />
+                    <Music user={user} isMobile={isMobile} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="contact" id="contact">
                 <Grid.Column>
-                    <Contact user={props.user} text="Contact" />
+                    <Contact user={user} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>

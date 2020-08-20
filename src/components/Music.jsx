@@ -7,12 +7,12 @@ const MUSIC_URLS = [
     "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/871499902&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
 ];
 
-const Music = (props) => {
+const Music = ({ isMobile, user }) => {
     const getEmbeds = () => {
         let i = 0;
         return MUSIC_URLS.map((url) => {
             i += 1;
-            const width = props.isMobile ? 16 : 6;
+            const width = isMobile ? 16 : 6;
             return (
                 <Grid.Column width={width} key={i}>
                     <iframe
@@ -31,7 +31,7 @@ const Music = (props) => {
 
     return (
         <div>
-            <SectionHeading text="Music" user={props.user} />
+            <SectionHeading text="Music" user={user} />
             <Grid>
                 <Grid.Row centered>{getEmbeds()}</Grid.Row>
             </Grid>

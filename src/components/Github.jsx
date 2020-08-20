@@ -86,8 +86,7 @@ const displayLinks = (github) => {
     );
 };
 
-const Github = (props) => {
-    const { github } = props;
+const Github = ({ github }) => {
     return (
         <Card raised className="corner-sharp">
             <Card.Content target="_blank" className="card-height">

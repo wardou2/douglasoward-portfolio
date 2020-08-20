@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
 
-const NamePicIntro = (props) => {
-    if (!props.user.intro) {
+const NamePicIntro = ({ user }) => {
+    if (!user.intro) {
         return <span className="font-heading font-size-huge">Loading...</span>;
     }
-    const words = props.user.intro.split(" ");
+    const words = user.intro.split(" ");
 
     return (
         <Grid stackable>
@@ -15,12 +15,12 @@ const NamePicIntro = (props) => {
 
                 <br />
                 <span className="font-heading font-size-huge">
-                    {props.user.first_name} {props.user.last_name}
+                    {user.first_name} {user.last_name}
                 </span>
 
                 <br />
                 <span className="font-heading font-size-medium">
-                    {props.user.title}
+                    {user.title}
                 </span>
 
                 <br />
@@ -44,7 +44,7 @@ const NamePicIntro = (props) => {
             <Grid.Column width={6} textAlign="center">
                 <img
                     className="image-circle-portrait"
-                    src={props.user.img_url}
+                    src={user.img_url}
                     alt="portrait"
                 ></img>
             </Grid.Column>

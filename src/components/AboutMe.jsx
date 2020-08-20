@@ -3,19 +3,19 @@ import { Grid } from "semantic-ui-react";
 
 import SectionHeading from "./SectionHeading";
 
-const AboutMe = (props) => {
-    if (!props.user.bio) {
+const AboutMe = ({ user }) => {
+    if (!user.bio) {
         return (
             <div>
-                <SectionHeading text="About Me" user={props.user} />
+                <SectionHeading text="About Me" user={user} />
             </div>
         );
     }
-    const words = props.user.bio.split(" ");
+    const words = user.bio.split(" ");
 
     return (
         <div>
-            <SectionHeading text="About Me" user={props.user} />
+            <SectionHeading text="About Me" user={user} />
             <Grid columns="equal">
                 <Grid.Row columns={16}>
                     <Grid.Column width={2}></Grid.Column>

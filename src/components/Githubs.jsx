@@ -3,14 +3,14 @@ import { Grid, Card } from "semantic-ui-react";
 import Github from "./Github";
 import SectionHeading from "./SectionHeading";
 
-const Githubs = (props) => {
-    if (!props.githubs) {
+const Githubs = ({ githubs, user }) => {
+    if (!githubs) {
         return <span className="font-heading font-size-large">Loading...</span>;
     }
-    const githubs = props.githubs.sort((a, b) => a.order_id - b.order_id);
+    const githubsSorted = githubs.sort((a, b) => a.order_id - b.order_id);
     return (
         <div>
-            <SectionHeading text="Featured Repos" user={props.user} />
+            <SectionHeading text="Featured Repos" user={user} />
 
             <Grid columns={"equal"} stackable centered>
                 <Grid.Row columns={16}>
@@ -18,7 +18,7 @@ const Githubs = (props) => {
                     <Grid.Column width={12}>
                         <Card.Group centered doubling itemsPerRow={2}>
                             <br />
-                            {githubs.map((github, index) => {
+                            {githubsSorted.map((github, index) => {
                                 return <Github github={github} key={index} />;
                             })}
                         </Card.Group>

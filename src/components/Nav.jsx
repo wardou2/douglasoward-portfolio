@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Icon, Grid } from "semantic-ui-react";
 import NavLinks from "./NavLinks";
 
-const Nav = (props) => {
+const Nav = ({ toggleSidebar, isMobile }) => {
     return (
         <Grid>
-            {props.isMobile ? (
+            {isMobile ? (
                 <Grid.Row>
                     <Grid.Column width={8} />
                     <Grid.Column textAlign="right" width={8}>
@@ -18,11 +18,7 @@ const Nav = (props) => {
                             color="black"
                             size="small"
                         />
-                        <Link
-                            className="item"
-                            onClick={props.toggleSidebar}
-                            to=""
-                        >
+                        <Link className="item" onClick={toggleSidebar} to="">
                             <Icon color="black" name="bars" size="large" />
                         </Link>
                     </Grid.Column>
@@ -31,8 +27,8 @@ const Nav = (props) => {
                 <Grid.Row>
                     <Grid.Column width={15} stretched>
                         <NavLinks
-                            toggleSidebar={props.toggleSidebar}
-                            isMobile={props.isMobile}
+                            toggleSidebar={toggleSidebar}
+                            isMobile={isMobile}
                         />
                     </Grid.Column>
                 </Grid.Row>
