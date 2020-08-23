@@ -1,5 +1,4 @@
 export type User = {
-    id: number;
     firstName: string;
     lastName: string;
     email: string;
@@ -8,5 +7,11 @@ export type User = {
     bio: string;
     intro: string;
     title: string;
-    colorTheme: string;
+    colorTheme: colorTheme;
 };
+
+type colorTheme =
+    | "theme-default"
+    | "theme-autumn"
+    | "theme-ice"
+    | "theme-berries";
