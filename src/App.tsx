@@ -69,50 +69,43 @@ const SKILLS: SkillType[] = [
     {
         id: 27,
         name: "ES6 Javascript",
-        imgUrl:
-            "https://www.shareicon.net/data/512x512/2016/07/06/106573_software_512x512.png",
+        imgUrl: "/images/skills/JS-logo.png",
         orderId: 1,
     },
     {
         id: 24,
         name: "React.js",
-        imgUrl:
-            "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png",
+        imgUrl: "/images/skills/React-logo.png",
         orderId: 0,
     },
     {
         id: 25,
         name: "React Native",
-        imgUrl:
-            "https://pluralsight2.imgix.net/paths/images/react-0f6558f88f.png",
+        imgUrl: "/images/skills/ReactNative-logo.png",
         orderId: 3,
     },
     {
         id: 40,
         name: "Django",
-        imgUrl:
-            "https://cdn.iconscout.com/icon/free/png-256/django-2-282855.png",
+        imgUrl: "/images/skills/Django-logo.png",
         orderId: 5,
     },
     {
         id: 41,
         name: "SASS/CSS",
-        imgUrl:
-            "https://sass-lang.com/assets/img/styleguide/seal-black-1e36d095.png",
+        imgUrl: "/images/skills/Sass-logo.png",
         orderId: 6,
     },
     {
         id: 39,
         name: "TypeScript",
-        imgUrl:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png",
+        imgUrl: "/images/skills/TS-logo.png",
         orderId: 2,
     },
     {
         id: 26,
         name: "Ruby on Rails",
-        imgUrl:
-            "https://png-2.findicons.com/files/icons/1607/ruby_on_rails/512/ror_logo.png",
+        imgUrl: "/images/skills/RubyOnRails-logo.png",
         orderId: 5,
     },
 ];
