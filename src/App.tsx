@@ -10,7 +10,6 @@ import { SkillType } from "./Interfaces/Skill";
 import { GithubType } from "./Interfaces/Github";
 
 const USER: User = {
-    id: 5,
     firstName: "Douglas",
     lastName: "Ward",
     email: "ward92@gmail.com",
@@ -66,43 +65,36 @@ const JOBS: JobType[] = [
 
 const SKILLS: SkillType[] = [
     {
-        id: 27,
         name: "ES6 Javascript",
         imgUrl: "/images/skills/JS-logo.png",
         orderId: 1,
     },
     {
-        id: 24,
         name: "React.js",
         imgUrl: "/images/skills/React-logo.png",
         orderId: 0,
     },
     {
-        id: 25,
         name: "React Native",
         imgUrl: "/images/skills/ReactNative-logo.png",
         orderId: 3,
     },
     {
-        id: 40,
         name: "Django",
         imgUrl: "/images/skills/Django-logo.png",
         orderId: 5,
     },
     {
-        id: 41,
         name: "SASS/CSS",
         imgUrl: "/images/skills/Sass-logo.png",
         orderId: 6,
     },
     {
-        id: 39,
         name: "TypeScript",
         imgUrl: "/images/skills/TS-logo.png",
         orderId: 2,
     },
     {
-        id: 26,
         name: "Ruby on Rails",
         imgUrl: "/images/skills/RubyOnRails-logo.png",
         orderId: 5,
