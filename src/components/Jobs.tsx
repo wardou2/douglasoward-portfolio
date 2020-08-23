@@ -2,12 +2,20 @@ import React from "react";
 import { Grid, Card } from "semantic-ui-react";
 import SectionHeading from "./SectionHeading";
 import Job from "./Job";
+import { JobType } from "../Interfaces/Job";
+import { User } from "../Interfaces/User";
 
-const Jobs = ({ jobs, user }) => {
+type Props = {
+    jobs: JobType[];
+    user: User;
+};
+
+const Jobs = ({ jobs, user }: Props) => {
     if (!jobs) {
         return <span className="font-heading font-size-large">Loading...</span>;
     }
-    const jobsSorted = jobs.sort((a, b) => a.order_id - b.order_id);
+    const jobsSorted = jobs.sort((a, b) => a.orderId - b.orderId);
+
     return (
         <div>
             <SectionHeading text="Positions" user={user} />

@@ -1,12 +1,17 @@
 import React from "react";
 import { Card, Image, Divider, List } from "semantic-ui-react";
+import { GithubType } from "../Interfaces/Github";
 
-const displayLinks = (github) => {
-    if (github.repo_url_back && github.demo_url) {
+type Props = {
+    github: GithubType;
+};
+
+const displayLinks = (github: GithubType) => {
+    if (github.repoUrlBack && github.demoUrl) {
         return (
             <div style={{ textAlign: "center" }}>
                 <a
-                    href={github.repo_url_front}
+                    href={github.repoUrlFront}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -14,7 +19,7 @@ const displayLinks = (github) => {
                 </a>{" "}
                 |{" "}
                 <a
-                    href={github.repo_url_back}
+                    href={github.repoUrlBack}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -22,7 +27,7 @@ const displayLinks = (github) => {
                 </a>{" "}
                 |{" "}
                 <a
-                    href={github.demo_url}
+                    href={github.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -31,11 +36,11 @@ const displayLinks = (github) => {
             </div>
         );
     }
-    if (github.repo_url_back) {
+    if (github.repoUrlBack) {
         return (
             <div style={{ textAlign: "center" }}>
                 <a
-                    href={github.repo_url_front}
+                    href={github.repoUrlFront}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -43,7 +48,7 @@ const displayLinks = (github) => {
                 </a>{" "}
                 |{" "}
                 <a
-                    href={github.repo_url_back}
+                    href={github.repoUrlBack}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -52,11 +57,11 @@ const displayLinks = (github) => {
             </div>
         );
     }
-    if (github.demo_url) {
+    if (github.demoUrl) {
         return (
             <div style={{ textAlign: "center" }}>
                 <a
-                    href={github.repo_url_front}
+                    href={github.repoUrlFront}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -64,7 +69,7 @@ const displayLinks = (github) => {
                 </a>{" "}
                 |{" "}
                 <a
-                    href={github.demo_url}
+                    href={github.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -76,7 +81,7 @@ const displayLinks = (github) => {
     return (
         <div style={{ textAlign: "center" }}>
             <a
-                href={github.repo_url_front}
+                href={github.repoUrlFront}
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -86,7 +91,7 @@ const displayLinks = (github) => {
     );
 };
 
-const Github = ({ github }) => {
+const Github = ({ github }: Props) => {
     return (
         <Card raised className="corner-sharp">
             <Card.Content target="_blank" className="card-height">
@@ -104,7 +109,7 @@ const Github = ({ github }) => {
                         marginBottom: "10px",
                     }}
                     rounded
-                    src={github.img_url}
+                    src={github.imgUrl}
                 />
                 <Card.Meta>
                     <div>{displayLinks(github)}</div>

@@ -1,8 +1,14 @@
 import React from "react";
 import { Grid, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { User } from "../Interfaces/User";
 
-const SectionHeading = ({ user, text }) => {
+type Props = {
+    user: User;
+    text: string;
+};
+
+const SectionHeading = ({ user, text }: Props) => {
     return (
         <Grid columns={16}>
             <Grid.Row centered>
@@ -11,7 +17,7 @@ const SectionHeading = ({ user, text }) => {
                 </Link>
             </Grid.Row>
 
-            <Grid.Row className={`${user.color_theme}-heading`} width={16}>
+            <Grid.Row className={`${user.colorTheme}-heading`} width={16}>
                 <Grid.Column width={1} />
                 <Grid.Column width={11} verticalAlign="middle">
                     <span className="font-size-large font-heading">{text}</span>

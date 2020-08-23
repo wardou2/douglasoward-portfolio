@@ -1,7 +1,12 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
+import { User } from "../Interfaces/User";
 
-const NamePicIntro = ({ user }) => {
+type Props = {
+    user: User;
+};
+
+const NamePicIntro = ({ user }: Props) => {
     if (!user.intro) {
         return <span className="font-heading font-size-huge">Loading...</span>;
     }
@@ -15,7 +20,7 @@ const NamePicIntro = ({ user }) => {
 
                 <br />
                 <span className="font-heading font-size-huge">
-                    {user.first_name} {user.last_name}
+                    {user.firstName} {user.lastName}
                 </span>
 
                 <br />
@@ -44,7 +49,7 @@ const NamePicIntro = ({ user }) => {
             <Grid.Column width={6} textAlign="center">
                 <img
                     className="image-circle-portrait"
-                    src={user.img_url}
+                    src={user.imgUrl}
                     alt="portrait"
                 ></img>
             </Grid.Column>
@@ -90,7 +95,7 @@ export default NamePicIntro;
 
 //             <Grid.Column width={6} textAlign="left">
 //                <img className="image-circle-portrait"
-//                   src={props.user.img_url} alt="portrait"></img>
+//                   src={props.user.imgUrl} alt="portrait"></img>
 //                <img className="image-circle-portrait-alt"
 //                   src={'/images/CHEESIN_DRGN.jpg'} alt="DRGN"></img>
 //             </Grid.Column>

@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
-const ScrollHandler = ({ location: { hash }, children }) => {
+interface Props extends RouteComponentProps {
+    children: any;
+}
+
+const ScrollHandler = ({ location: { hash }, children }: Props) => {
     useEffect(() => {
         const element = document.getElementById(hash.replace("#", ""));
 

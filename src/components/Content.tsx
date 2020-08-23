@@ -8,13 +8,33 @@ import Jobs from "./Jobs";
 import Githubs from "./Githubs";
 import Skills from "./Skills";
 import Music from "./Music";
+import { JobType } from "../Interfaces/Job";
+import { GithubType } from "../Interfaces/Github";
+import { SkillType } from "../Interfaces/Skill";
+import { User } from "../Interfaces/User";
 
-const Content = ({ toggleSidebar, jobs, githubs, skills, user, isMobile }) => {
+type Props = {
+    toggleSidebar: () => void;
+    jobs: JobType[];
+    githubs: GithubType[];
+    skills: SkillType[];
+    music: string[];
+    user: User;
+};
+
+const Content = ({
+    toggleSidebar,
+    jobs,
+    githubs,
+    skills,
+    music,
+    user,
+}: Props) => {
     return (
         <Grid columns="equal">
             <Grid.Row key="nav" id="nav">
                 <Grid.Column>
-                    <Nav toggleSidebar={toggleSidebar} isMobile={isMobile} />
+                    <Nav toggleSidebar={toggleSidebar} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="name" id="name">
@@ -44,7 +64,7 @@ const Content = ({ toggleSidebar, jobs, githubs, skills, user, isMobile }) => {
             </Grid.Row>
             <Grid.Row key="music" id="music">
                 <Grid.Column>
-                    <Music user={user} isMobile={isMobile} />
+                    <Music user={user} music={music} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row key="contact" id="contact">

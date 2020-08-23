@@ -2,8 +2,13 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 
 import SectionHeading from "./SectionHeading";
+import { User } from "../Interfaces/User";
 
-const AboutMe = ({ user }) => {
+type Props = {
+    user: User;
+};
+
+const AboutMe = ({ user }: Props) => {
     if (!user.bio) {
         return (
             <div>

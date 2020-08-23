@@ -3,12 +3,19 @@ import { Grid } from "semantic-ui-react";
 
 import Skill from "./Skill";
 import SectionHeading from "./SectionHeading";
+import { SkillType } from "../Interfaces/Skill";
+import { User } from "../Interfaces/User";
 
-const Skills = ({ skills, user }) => {
+type Props = {
+    skills: SkillType[];
+    user: User;
+};
+
+const Skills = ({ skills, user }: Props) => {
     if (!skills) {
         return <span className="font-heading font-size-large">Loading...</span>;
     }
-    const skillsSorted = skills.sort((a, b) => a.order_id - b.order_id);
+    const skillsSorted = skills.sort((a, b) => a.orderId - b.orderId);
 
     return (
         <div>

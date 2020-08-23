@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { Grid, Icon, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { User } from "../Interfaces/User";
 
-const parsePhoneNum = (num) => {
+type Props = {
+    user: User;
+};
+
+const parsePhoneNum = (num: string) => {
     if (num) {
         return `(${num.slice(0, 3)}) ${num.slice(3, 6)} ${num.slice(6)}`;
     }
     return "";
 };
 
-const Contact = ({ user }) => {
+const Contact = ({ user }: Props) => {
     const [hideInfo, setHideInfo] = useState(true);
     const toggleContact = () => {
         setHideInfo(!hideInfo);
@@ -25,7 +30,7 @@ const Contact = ({ user }) => {
             </Grid.Row>
             <Grid.Row
                 only="computer tablet"
-                className={`${user.color_theme}-heading`}
+                className={`${user.colorTheme}-heading`}
                 verticalAlign="middle"
             >
                 <Grid.Column width={1} />
@@ -64,7 +69,7 @@ const Contact = ({ user }) => {
             </Grid.Row>
             <Grid.Row
                 only="mobile"
-                className={`${user.color_theme}-heading`}
+                className={`${user.colorTheme}-heading`}
                 verticalAlign="middle"
             >
                 <Grid.Column width={1} />
