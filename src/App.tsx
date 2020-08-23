@@ -40,7 +40,7 @@ const JOBS: JobType[] = [
             "Experience working with clients on-site at Airbus UK and Boeing Everett.",
         ],
         skillsUsed: [],
-        imgUrl: "https://www.electroimpact.com/Images/LogoBanner_Color.png",
+        imgUrl: "/images/jobs/electroimpact-logo.png",
         orderId: 1,
     },
     {
@@ -59,8 +59,7 @@ const JOBS: JobType[] = [
             "Embedded in fast-paced feature team with FE and BE engineers, QA, PM, and Tech Pubs",
         ],
         skillsUsed: ["TypeScript", "React", "SASS", "Linux", "Docker"],
-        imgUrl:
-            "https://security-img.scdn6.secure.raxcdn.com/news/612/extrahop-cloud-network-detection-920x533.png",
+        imgUrl: "/images/jobs/extrahop-logo.png",
         orderId: 0,
     },
 ];
