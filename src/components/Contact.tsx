@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { Grid, Icon, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { User } from "../Interfaces/User";
 
-const parsePhoneNum = (num) => {
+type Props = {
+    user: User;
+};
+
+const parsePhoneNum = (num: string) => {
     if (num) {
         return `(${num.slice(0, 3)}) ${num.slice(3, 6)} ${num.slice(6)}`;
     }
     return "";
 };
 
-const Contact = (props) => {
+const Contact = ({ user }: Props) => {
     const [hideInfo, setHideInfo] = useState(true);
     const toggleContact = () => {
         setHideInfo(!hideInfo);
@@ -25,13 +30,13 @@ const Contact = (props) => {
             </Grid.Row>
             <Grid.Row
                 only="computer tablet"
-                className={`${props.user.color_theme}-heading`}
+                className={`${user.colorTheme}-heading`}
                 verticalAlign="middle"
             >
                 <Grid.Column width={1} />
                 <Grid.Column width={4} verticalAlign="middle">
                     <span className="font-size-large font-heading">
-                        {props.text}
+                        Contact
                     </span>
                 </Grid.Column>
                 {hideInfo ? (
@@ -47,17 +52,15 @@ const Contact = (props) => {
                             className="text"
                             textAlign="center"
                         >
-                            <a href={`mailto:${props.user.email}`}>
-                                {props.user.email}
-                            </a>
+                            <a href={`mailto:${user.email}`}>{user.email}</a>
                         </Grid.Column>
                         <Grid.Column
                             width={3}
                             className="text"
                             textAlign="center"
                         >
-                            <a href={`tel: +1${props.user.phone}`}>
-                                +1 {parsePhoneNum(props.user.phone)}
+                            <a href={`tel: +1${user.phone}`}>
+                                +1 {parsePhoneNum(user.phone)}
                             </a>
                         </Grid.Column>
                     </>
@@ -66,13 +69,13 @@ const Contact = (props) => {
             </Grid.Row>
             <Grid.Row
                 only="mobile"
-                className={`${props.user.color_theme}-heading`}
+                className={`${user.colorTheme}-heading`}
                 verticalAlign="middle"
             >
                 <Grid.Column width={1} />
                 <Grid.Column width={4} verticalAlign="middle">
                     <span className="font-size-large font-heading">
-                        {props.text}
+                        Contact
                     </span>
                 </Grid.Column>
                 {hideInfo ? (
@@ -84,13 +87,11 @@ const Contact = (props) => {
                 ) : (
                     <Grid.Column width={10} className="text" textAlign="center">
                         <Grid.Row>
-                            <a href={`mailto:${props.user.email}`}>
-                                {props.user.email}
-                            </a>
+                            <a href={`mailto:${user.email}`}>{user.email}</a>
                         </Grid.Row>
                         <Grid.Row>
-                            <a href={`tel: +1${props.user.phone}`}>
-                                +1 {parsePhoneNum(props.user.phone)}
+                            <a href={`tel: +1${user.phone}`}>
+                                +1 {parsePhoneNum(user.phone)}
                             </a>
                         </Grid.Row>
                     </Grid.Column>

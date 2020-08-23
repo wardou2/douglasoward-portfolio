@@ -2,19 +2,20 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 
 import SectionHeading from "./SectionHeading";
+import { User } from "../Interfaces/User";
+import useIsMobile from "../util/hooks";
 
-const MUSIC_URLS = [
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/871499902&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-];
+type Props = {
+    user: User;
+    music: string[];
+};
 
-const Music = (props) => {
+const Music = ({ user, music }: Props) => {
+    const width = useIsMobile() ? 16 : 6;
     const getEmbeds = () => {
-        let i = 0;
-        return MUSIC_URLS.map((url) => {
-            i += 1;
-            const width = props.isMobile ? 16 : 6;
+        return music.map((url, index) => {
             return (
-                <Grid.Column width={width} key={i}>
+                <Grid.Column width={width} key={index}>
                     <iframe
                         width="100%"
                         height="166"
@@ -22,7 +23,7 @@ const Music = (props) => {
                         frameBorder="no"
                         allow="autoplay"
                         src={url}
-                        title={i}
+                        title={url}
                     ></iframe>
                 </Grid.Column>
             );
@@ -31,7 +32,7 @@ const Music = (props) => {
 
     return (
         <div>
-            <SectionHeading text="Music" user={props.user} />
+            <SectionHeading text="Music" user={user} />
             <Grid>
                 <Grid.Row centered>{getEmbeds()}</Grid.Row>
             </Grid>

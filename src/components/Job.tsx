@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, List, Image } from "semantic-ui-react";
 
-import sanitizeArray from "../util/String";
+import { JobType } from "../Interfaces/Job";
 
-const Job = (props) => {
-    const skillsUsed = sanitizeArray(props.job.skills_used);
-    const responsibilities = sanitizeArray(props.job.responsibilities);
+type Props = {
+    job: JobType;
+};
 
+const Job = ({ job }: Props) => {
     return (
         <Card raised className="corner-sharp text font-size-medium">
             <Card.Content>
@@ -14,31 +15,30 @@ const Job = (props) => {
                     spaced
                     floated="left"
                     size="tiny"
-                    src={props.job.img_url}
-                    alt={props.job.company}
+                    src={job.imgUrl}
+                    alt={job.company}
                 />
-                <Card.Header> {props.job.title} </Card.Header>
-                <Card.Meta> {props.job.company} </Card.Meta>
+                <Card.Header> {job.title} </Card.Header>
+                <Card.Meta> {job.company} </Card.Meta>
                 <Card.Meta>
                     {" "}
-                    {props.job.start_month} {props.job.start_year} -{" "}
-                    {props.job.end_month}{" "}
-                    {props.job.end_year ? props.job.end_year : "Present"}
+                    {job.startMonth} {job.startYear} - {job.endMonth}{" "}
+                    {job.endYear ? job.endYear : "Present"}
                 </Card.Meta>
             </Card.Content>
-            {props.job.summary && (
+            {job.summary && (
                 <Card.Content>
                     <Card.Meta> SUMMARY </Card.Meta>
-                    <Card.Description>{props.job.summary} </Card.Description>
+                    <Card.Description>{job.summary} </Card.Description>
                 </Card.Content>
             )}
 
-            {responsibilities.length > 0 && (
+            {job.responsibilities.length > 0 && (
                 <Card.Content>
                     <Card.Meta> RESPONSIBILITIES </Card.Meta>
                     <Card.Description>
                         <List bulleted>
-                            {responsibilities.map((res, index) => {
+                            {job.responsibilities.map((res, index) => {
                                 return (
                                     <List.Item
                                         key={res + index}
@@ -52,15 +52,15 @@ const Job = (props) => {
                     </Card.Description>
                 </Card.Content>
             )}
-            {skillsUsed.length > 0 && (
+            {job.skillsUsed.length > 0 && (
                 <Card.Content>
                     <Card.Meta> SKILLS USED </Card.Meta>
                     <Card.Description>
                         <List bulleted>
-                            {skillsUsed.map((skill) => {
+                            {job.skillsUsed.map((skill, index) => {
                                 return (
                                     <List.Item
-                                        key={skill}
+                                        key={index}
                                         className="font_size_small"
                                     >
                                         {skill}

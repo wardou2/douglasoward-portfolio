@@ -1,6 +1,11 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import useIsMobile from "../util/hooks";
+
+type Props = {
+    toggleSidebar: () => void;
+};
 
 const LINK_DETAILS = [
     {
@@ -37,7 +42,7 @@ const getLinks = () =>
             </Link>
         </Menu.Item>
     ));
-const getLinksMobile = (toggleSidebar) =>
+const getLinksMobile = (toggleSidebar: () => void) =>
     LINK_DETAILS.map((entry) => (
         <Menu.Item key={entry.name}>
             <Link
@@ -50,8 +55,8 @@ const getLinksMobile = (toggleSidebar) =>
         </Menu.Item>
     ));
 
-const NavLinks = ({ isMobile, toggleSidebar }) => {
-    return isMobile ? (
+const NavLinks = ({ toggleSidebar }: Props) => {
+    return useIsMobile() ? (
         <Menu borderless secondary vertical fluid>
             {getLinksMobile(toggleSidebar)}
         </Menu>
