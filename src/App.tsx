@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
 
 import Content from "./components/Content";
@@ -8,6 +8,7 @@ import { User } from "./Interfaces/User";
 import { JobType } from "./Interfaces/Job";
 import { SkillType } from "./Interfaces/Skill";
 import { GithubType } from "./Interfaces/Github";
+import RENDERER from "./three/main";
 
 const USER: User = {
     firstName: "Douglas",
@@ -161,8 +162,13 @@ const App = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
+    const threeRef = useRef(null);
+    useEffect(() => {
+        new RENDERER(threeRef);
+    }, [threeRef]);
+
     return (
-        <Sidebar.Pushable as={Segment} className="fix-sidebar">
+        <>
             <Sticky>
                 <Sidebar
                     animation="overlay"
@@ -181,19 +187,22 @@ const App = () => {
                     <NavLinks toggleSidebar={toggleSidebar} />
                 </Sidebar>
             </Sticky>
-            <Sidebar.Pusher dimmed={false}>
-                <Segment basic className={USER.colorTheme}>
-                    <Content
-                        toggleSidebar={toggleSidebar}
-                        jobs={JOBS}
-                        githubs={GITHUBS}
-                        skills={SKILLS}
-                        music={MUSIC}
-                        user={USER}
-                    />
-                </Segment>
-            </Sidebar.Pusher>
-        </Sidebar.Pushable>
+            <Sidebar.Pushable className="fix-sidebar">
+                <Sidebar.Pusher dimmed={false}>
+                    <Segment basic className={USER.colorTheme}>
+                        <div id="canvas-div" ref={threeRef}></div>
+                        <Content
+                            toggleSidebar={toggleSidebar}
+                            jobs={JOBS}
+                            githubs={GITHUBS}
+                            skills={SKILLS}
+                            music={MUSIC}
+                            user={USER}
+                        />
+                    </Segment>
+                </Sidebar.Pusher>
+            </Sidebar.Pushable>
+        </>
     );
 };
 

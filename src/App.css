@@ -1,5 +1,10 @@
 /* All entries alphabetical, except: body, *, theme at bottom */
 
+#canvas-div {
+    position: absolute;
+    opacity: 50%;
+}
+
 .centered {
     text-align: center;
 }
