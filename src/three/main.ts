@@ -1,6 +1,5 @@
 /* eslint-disable no-plusplus */
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Geometry, Points, PointsMaterial } from "three";
 import { MutableRefObject } from "react";
 
@@ -31,6 +30,8 @@ class RENDERER {
 
     ref: MutableRefObject<null | HTMLElement>;
 
+    requestId: number | undefined;
+
     constructor(ref: MutableRefObject<null | HTMLElement>) {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
@@ -53,6 +54,7 @@ class RENDERER {
         this.HEIGHT = 100;
         this.SEPARATION = 8;
         this.ref = ref;
+        this.requestId = undefined;
 
         // Resize screen
         window.addEventListener("resize", () => {
@@ -69,6 +71,7 @@ class RENDERER {
 
     render = () => {
         // https://stackoverflow.com/questions/43845399/how-to-make-an-animated-wave-in-threejs
+        this.requestId = undefined;
         let index = 0;
         const time = Date.now() * 0.00005;
         const h = ((360 * (1.0 + time)) % 360) / 360;
@@ -90,9 +93,22 @@ class RENDERER {
             }
             this.particleCloud.geometry.verticesNeedUpdate = true;
         }
-        window.requestAnimationFrame(this.render);
 
         this.renderer.render(this.scene, this.camera);
+        this.start();
+    };
+
+    start = () => {
+        if (!this.requestId) {
+            this.requestId = window.requestAnimationFrame(this.render);
+        }
+    };
+
+    stop = () => {
+        if (this.requestId) {
+            window.cancelAnimationFrame(this.requestId);
+            this.requestId = undefined;
+        }
     };
 
     initialize = () => {

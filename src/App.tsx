@@ -1,7 +1,13 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import { Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
-
+import {
+    Icon,
+    Menu,
+    Segment,
+    Sidebar,
+    Sticky,
+    Button,
+} from "semantic-ui-react";
 import Content from "./components/Content";
 import NavLinks from "./components/NavLinks";
 import { User } from "./Interfaces/User";
@@ -157,6 +163,7 @@ const MUSIC = [
 
 const App = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
+    const [renderer, setRenderer] = useState<RENDERER | null>(null);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
@@ -164,8 +171,15 @@ const App = () => {
 
     const threeRef = useRef(null);
     useEffect(() => {
-        new RENDERER(threeRef);
+        const render = new RENDERER(threeRef);
+        setRenderer(render);
     }, [threeRef]);
+
+    const toggleThree = () => {
+        if (renderer) {
+            renderer.stop();
+        }
+    };
 
     return (
         <>
@@ -184,6 +198,8 @@ const App = () => {
                         <Icon name="bars" size="mini" />
                         Close
                     </Menu.Item>
+                    {/* TODO: Move to better place */}
+                    <Button onClick={toggleThree}>Disable Animation</Button>
                     <NavLinks toggleSidebar={toggleSidebar} />
                 </Sidebar>
             </Sticky>
@@ -191,6 +207,7 @@ const App = () => {
                 <Sidebar.Pusher dimmed={false}>
                     <Segment basic className={USER.colorTheme}>
                         <div id="canvas-div" ref={threeRef}></div>
+
                         <Content
                             toggleSidebar={toggleSidebar}
                             jobs={JOBS}
