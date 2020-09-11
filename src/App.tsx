@@ -1,13 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
-import {
-    Icon,
-    Menu,
-    Segment,
-    Sidebar,
-    Sticky,
-    Button,
-} from "semantic-ui-react";
+import { Icon, Menu, Segment, Sidebar, Sticky } from "semantic-ui-react";
 import Content from "./components/Content";
 import NavLinks from "./components/NavLinks";
 import { User } from "./Interfaces/User";
@@ -15,6 +8,7 @@ import { JobType } from "./Interfaces/Job";
 import { SkillType } from "./Interfaces/Skill";
 import { GithubType } from "./Interfaces/Github";
 import RENDERER from "./three/main";
+import useIsMobile from "./util/hooks";
 
 const USER: User = {
     firstName: "Douglas",
@@ -163,23 +157,34 @@ const MUSIC = [
 
 const App = () => {
     const [sidebarVisible, setSidebarVisible] = useState(false);
-    const [renderer, setRenderer] = useState<RENDERER | null>(null);
+    const [threeRenderer, setRenderer] = useState<RENDERER | null>(null);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     };
 
     const threeRef = useRef(null);
+    const isMobile = useIsMobile();
+    // Mount ThreeJS if not already mounted and on large screen
     useEffect(() => {
+        if (threeRenderer || isMobile) return;
         const render = new RENDERER(threeRef);
         setRenderer(render);
-    }, [threeRef]);
+    }, [isMobile, threeRenderer]);
 
-    const toggleThree = () => {
-        if (renderer) {
-            renderer.stop();
+    // Remove ThreeJS if moving to small screen
+    useEffect(() => {
+        if (isMobile && threeRenderer) {
+            threeRenderer.stop();
+            threeRenderer.unmount();
+            setRenderer(null);
         }
-    };
+    }, [isMobile, threeRenderer]);
+
+    // Close sidebar if moving from small to large screen
+    useEffect(() => {
+        if (!isMobile && sidebarVisible) setSidebarVisible(false);
+    }, [isMobile, sidebarVisible]);
 
     return (
         <>
@@ -198,8 +203,6 @@ const App = () => {
                         <Icon name="bars" size="mini" />
                         Close
                     </Menu.Item>
-                    {/* TODO: Move to better place */}
-                    <Button onClick={toggleThree}>Disable Animation</Button>
                     <NavLinks toggleSidebar={toggleSidebar} />
                 </Sidebar>
             </Sticky>
@@ -207,7 +210,6 @@ const App = () => {
                 <Sidebar.Pusher dimmed={false}>
                     <Segment basic className={USER.colorTheme}>
                         <div id="canvas-div" ref={threeRef}></div>
-
                         <Content
                             toggleSidebar={toggleSidebar}
                             jobs={JOBS}

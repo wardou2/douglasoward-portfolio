@@ -111,6 +111,13 @@ class RENDERER {
         }
     };
 
+    unmount = () => {
+        this.material.dispose();
+        this.particleGeometry.dispose();
+        if (this.ref.current !== null)
+            this.ref.current.removeChild(this.renderer.domElement);
+    };
+
     initialize = () => {
         this.camera.position.set(0, -30, 0);
 
