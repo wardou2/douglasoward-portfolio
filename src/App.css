@@ -1,8 +1,8 @@
 /* All entries alphabetical, except: body, *, theme at bottom */
 
-#canvas-div {
+#three-container {
     position: absolute;
-    opacity: 30%;
+    opacity: 0.3;
 }
 
 .centered {

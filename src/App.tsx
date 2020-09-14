@@ -209,7 +209,7 @@ const App = () => {
             <Sidebar.Pushable className="fix-sidebar">
                 <Sidebar.Pusher dimmed={false}>
                     <Segment basic className={USER.colorTheme}>
-                        <div id="canvas-div" ref={threeRef}></div>
+                        <div id="three-container" ref={threeRef}></div>
                         <Content
                             toggleSidebar={toggleSidebar}
                             jobs={JOBS}
