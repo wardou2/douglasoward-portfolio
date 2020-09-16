@@ -26,6 +26,8 @@ class RENDERER {
 
     HEIGHT: number;
 
+    MOVEMENT: number;
+
     SEPARATION: number;
 
     ref: MutableRefObject<null | HTMLElement>;
@@ -49,17 +51,23 @@ class RENDERER {
         this.particleCloud = null;
         this.objects = [];
         this.theta = 0;
-        this.thetaDelta = 0.001;
-        this.WIDTH = 100;
-        this.HEIGHT = 100;
-        this.SEPARATION = 8;
+        this.thetaDelta = 0.005;
+        this.WIDTH = 17;
+        this.HEIGHT = 30;
+        this.MOVEMENT = 3.8;
+        this.SEPARATION = 6;
         this.ref = ref;
         this.requestId = undefined;
 
         // Resize screen
         window.addEventListener("resize", () => {
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.camera.aspect = window.innerWidth / window.innerHeight;
+            if (this.ref.current) {
+                this.renderer.setSize(
+                    window.innerWidth,
+                    this.ref.current.clientHeight
+                );
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+            }
 
             this.camera.updateProjectionMatrix();
         });
@@ -87,7 +95,7 @@ class RENDERER {
                             Math.sin(
                                 (z / this.HEIGHT) * Math.PI * 8 + this.theta
                             )) *
-                        10;
+                        this.MOVEMENT;
                     index++;
                 }
             }
@@ -119,13 +127,18 @@ class RENDERER {
     };
 
     initialize = () => {
-        this.camera.position.set(0, -30, 0);
+        this.camera.position.set(0, 0, this.SEPARATION * 19);
 
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.shadowMap.enabled = true;
         // Insert scene to DOM
-        if (this.ref.current !== null)
+        if (this.ref.current !== null) {
+            this.renderer.setSize(
+                window.innerWidth,
+                this.ref.current.clientHeight
+            );
+            this.renderer.shadowMap.enabled = true;
+
             this.ref.current.appendChild(this.renderer.domElement);
+        }
     };
 
     addParticleGeometry = () => {

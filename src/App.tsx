@@ -188,6 +188,7 @@ const App = () => {
 
     return (
         <>
+            <div id="three-container" ref={threeRef}></div>
             <Sticky>
                 <Sidebar
                     animation="overlay"
@@ -209,7 +210,6 @@ const App = () => {
             <Sidebar.Pushable className="fix-sidebar">
                 <Sidebar.Pusher dimmed={false}>
                     <Segment basic className={USER.colorTheme}>
-                        <div id="three-container" ref={threeRef}></div>
                         <Content
                             toggleSidebar={toggleSidebar}
                             jobs={JOBS}
