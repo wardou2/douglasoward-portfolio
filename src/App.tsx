@@ -19,7 +19,7 @@ const USER: User = {
     bio:
         "Seattle-based full stack web developer with a focus on UI. I have experience with TypeScript, React, Ruby on Rails, and much more. Prior to transitioning to code, I worked as an electrical engineer in robotics and automation for aerospace manufacturing. In my free time, I write and produce music.",
     intro:
-        "Enjoys good code, coffee, making music, and a cold IPA on a mountain peak.",
+        "Enjoys good code, beautiful websites, making music, and a cold IPA on a mountain peak.",
     title: "Full Stack Web Developer",
     colorTheme: "theme-berries",
 };
@@ -153,6 +153,7 @@ const GITHUBS: GithubType[] = [
 
 const MUSIC = [
     "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/871499902&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
+    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/960470845&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
 ];
 
 const App = () => {
