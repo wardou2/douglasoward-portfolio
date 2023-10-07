@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+
 import { User } from "../Interfaces/User";
 
 type Props = {
@@ -12,9 +12,7 @@ const SectionHeading = ({ user, text }: Props) => {
     return (
         <Grid columns={16}>
             <Grid.Row centered>
-                <Link to="/#nav">
-                    <Icon name="triangle up" />
-                </Link>
+              
             </Grid.Row>
 
             <Grid.Row className={`${user.colorTheme}-heading`} width={16}>

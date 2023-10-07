@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+
 import useIsMobile from "../util/hooks";
 
 type Props = {
@@ -37,21 +37,13 @@ const LINK_DETAILS = [
 const getLinks = () =>
     LINK_DETAILS.map((entry) => (
         <Menu.Item key={entry.name}>
-            <Link className="item font-heading" to={entry.link}>
-                {entry.name}
-            </Link>
+            
         </Menu.Item>
     ));
 const getLinksMobile = (toggleSidebar: () => void) =>
     LINK_DETAILS.map((entry) => (
         <Menu.Item key={entry.name}>
-            <Link
-                className="item font-heading"
-                to={entry.link}
-                onClick={toggleSidebar}
-            >
-                {entry.name}
-            </Link>
+           
         </Menu.Item>
     ));
 

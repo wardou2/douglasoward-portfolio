@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Icon, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+
 import { User } from "../Interfaces/User";
 
 type Props = {
@@ -24,9 +24,7 @@ const Contact = ({ user }: Props) => {
         <Grid columns={16}>
             <Grid.Row />
             <Grid.Row centered>
-                <Link to="/#nav">
-                    <Icon name="triangle up" />
-                </Link>
+            
             </Grid.Row>
             <Grid.Row
                 only="computer tablet"
